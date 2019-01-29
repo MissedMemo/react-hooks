@@ -1,9 +1,9 @@
 import React from 'react'
 import { render } from 'react-dom'
 
-const App = ({greeting}) => <div>{ greeting }</div>
+import App from './1-useState/demo'
 
 render(
-  <App greeting='Hello, React Hooks!!!' />,
+  <App greeting='Hello, React Hooks!' />,
   document.getElementById('root')
 )
