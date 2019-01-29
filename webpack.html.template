@@ -7,6 +7,6 @@
     <title>React Hooks Demo</title>
   </head>
   <body>
-    <div>Heyya'</div>
+    <div id='root'></div>
   </body>
 </html>
