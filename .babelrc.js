@@ -1,9 +1,11 @@
-{
+const isTest = String(process.env.NODE_ENV) === 'test'
+
+module.exports = {
   "presets": [
     "@babel/preset-react",
     [ "@babel/preset-env", {
       "loose": true,
-      "modules": false,
+      "modules": isTest ? 'commonjs' : false,
       //"debug": true
     }]
   ]

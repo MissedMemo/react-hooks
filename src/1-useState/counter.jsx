@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { useState } from 'react'
 
 const Counter = () => {
 
@@ -9,8 +9,4 @@ const Counter = () => {
   return <button onClick={ increment }>{ `You clicked ${count} times so far...` }</button>
 }
 
-const App = () => <Fragment>
-  <Counter />
-</Fragment>
-
-export default App
+export default Counter
