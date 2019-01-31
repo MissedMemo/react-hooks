@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 /*
 const Counter = () => {
@@ -14,8 +14,12 @@ const Counter = () => {
 // refactor as CUSTOM hook, with passed component properties
 
 const useCounter = initialValue => {
-  const [count, setCount] = useState( initialValue )
+  const value = Number( localStorage.getItem('count') || initialValue )
+  const [count, setCount] = useState( value )
   const increment = () => setCount( count +1 )
+  useEffect( ()=> {
+    localStorage.setItem( 'count', count )
+  })
   return { count, increment }
 }
 
