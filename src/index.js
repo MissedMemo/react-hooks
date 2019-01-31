@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 
-import App from './1-useState/app'
+import App from './2-useEffect/app'
 
 render(
   <App />,
