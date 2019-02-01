@@ -1,7 +1,7 @@
 {
   "scripts": {
     "start": "webpack --mode development && node server",
-    "test": "jest src/2*"
+    "test": "jest src/3*"
   },
   "dependencies": {
     "express": "^4.16.4",
