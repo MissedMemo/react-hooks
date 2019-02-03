@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react'
-import Counter from './counter'
+import Tilt from './tilt'
 
-export default () => <Fragment>
-  <Counter />
-</Fragment>
+export default () => <div className='centered'>
+  <Tilt>
+    <div className='centered'>I'm Tilting...</div>
+  </Tilt>
+</div>
