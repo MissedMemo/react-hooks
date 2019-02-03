@@ -4,6 +4,8 @@
     "test": "jest src/3*"
   },
   "dependencies": {
+    "@emotion/core": "^10.0.6",
+    "@emotion/styled": "^10.0.6",
     "express": "^4.16.4",
     "react": "^16.8.0-alpha.1",
     "react-dom": "^16.8.0-alpha.1"
