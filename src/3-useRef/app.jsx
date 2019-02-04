@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
-import React, { Fragment } from 'react'
+import React from 'react'
 import Tilt from './tilt'
 
 const centered = css`
