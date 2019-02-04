@@ -27,14 +27,15 @@ const Tilt = props => {
 
   const tiltRef = useRef()
   
-  useEffect(() => {
+  // empty dependencies array (optional 2nd arg) ensures effect is defined just ONCE!
+  useEffect( () => {
     VanillaTilt.init( tiltRef.current, {
       max: 25,
       speed: 400,
       glare: true,
       'max-glare': 0.5,
     })
-    return () => tiltRef.current.vanillaTilt.destroy()
+    return () => tiltRef.current.vanillaTilt.destroy() // clean up on unmount
   }, [])
 
   return <TiltRoot ref={tiltRef}>
