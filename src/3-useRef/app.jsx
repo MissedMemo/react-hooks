@@ -4,11 +4,9 @@ import React, { Fragment } from 'react'
 import Tilt from './tilt'
 
 const centered = css`
-  background-color: lightgreen;
-  padding: 16px;
-  max-width: 300px;
-  text-align: center;
-  margin: 0 auto;
+  display: grid;
+  justify-content: center;
+  align-items: center;
 `
 
 export default () => <div css={centered}>

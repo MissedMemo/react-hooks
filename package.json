@@ -1,11 +1,14 @@
 {
   "scripts": {
-    "start": "webpack --mode development && node server",
+    "start-dev": "webpack --mode development && node server",
+    "start-prod": "NODE_ENV=production webpack --mode production && node server",
+    "start": "yarn run start-dev",
     "test": "jest src/3*"
   },
   "dependencies": {
     "@emotion/core": "^10.0.6",
     "@emotion/styled": "^10.0.6",
+    "babel-plugin-emotion": "^10.0.7",
     "express": "^4.16.4",
     "react": "^16.8.0-alpha.1",
     "react-dom": "^16.8.0-alpha.1"
