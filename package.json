@@ -3,7 +3,7 @@
     "start-dev": "webpack --mode development && node server",
     "start-prod": "NODE_ENV=production webpack --mode production && node server",
     "start": "yarn run start-dev",
-    "test": "jest src/3*"
+    "test": "jest src/4*"
   },
   "dependencies": {
     "@emotion/core": "^10.0.6",
