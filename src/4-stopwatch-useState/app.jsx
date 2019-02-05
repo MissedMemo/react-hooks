@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
-import Counter from './counter'
+import Stopwatch from './stopwatch'
 
 export default () => <Fragment>
-  <Counter />
+  <Stopwatch />
 </Fragment>
