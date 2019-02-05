@@ -5,25 +5,26 @@ import Stopwatch1 from './stopwatch-legacy'
 import Stopwatch2 from './stopwatch'
 
 const app = css`
+  padding-top: 100px;
   display: flex;
   justify-content: center;
 `
 
 const wrapper = css`
-  margin: 20px;
-  span {
+  margin: 0 40px;
+  label {
     display: block;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
   }
 `
 
 export default () => <div css={app}>
   <div css={wrapper}>
-    <span>Class-based...</span>
+    <label>Class-based...</label>
     <Stopwatch1 />
   </div>
   <div css={wrapper}>
-    <span>Hook-based...</span>
+    <label>Hook-based...</label>
     <Stopwatch2 />
   </div>
 </div>
