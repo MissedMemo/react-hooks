@@ -11,6 +11,7 @@ module.exports = {
     }]
   ],
   "plugins": [
-    isProduction ? "emotion" : ["emotion", {"sourceMap": true}]
+    isProduction ? "emotion" : ["emotion", {"sourceMap": true}],
+    "@babel/plugin-proposal-class-properties"
   ]
 }

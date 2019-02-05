@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 const Stopwatch = () => {
   return <div>
-    <div>00:00:00</div>
+    <div>0ms</div>
     <button>Start</button>
     <button>Reset</button>
   </div>
