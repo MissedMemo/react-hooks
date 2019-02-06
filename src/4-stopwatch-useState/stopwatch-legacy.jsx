@@ -9,6 +9,15 @@ class Stopwatch extends Component {
     isRunning: false
   }
 
+  componentWillUnmount() {
+    clearInterval(timer)
+  }
+
+  resetTimer = () => {
+    clearInterval(timer)
+    this.setState({ isRunning: false, timeElapsed: 0} )
+  }
+
   toggleStartStop = () => {
     const { isRunning } = this.state
 
@@ -33,7 +42,7 @@ class Stopwatch extends Component {
     return <div style={{textAlign: 'center'}}>
       <label style={labelStyle}>{ duration }</label>
       <button style={buttonStyle} onClick={this.toggleStartStop}>{ btnText }</button>
-      <button style={buttonStyle}>Reset</button>
+      <button style={buttonStyle} onClick={this.resetTimer}>Reset</button>
     </div>
   }
 }
