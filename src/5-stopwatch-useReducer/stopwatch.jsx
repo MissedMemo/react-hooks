@@ -20,7 +20,7 @@ const buttonStyle = css`
 const reducer = (state, action) => {
   switch( action.type ) {
     case 'UPDATE_ELAPSED_TIME':
-      return { ...state, timeElapsed: action.now - action.timeStarted }
+      return { ...state, timeElapsed: action.payload }
       break
     case 'TOGGLE_RUNSTATE':
       return { ...state, running: !state.running }
@@ -50,7 +50,7 @@ const Stopwatch = () => {
     } else {
       const timeStarted = Date.now()
       timerRef.current = setInterval( () => {
-        dispatch({type: 'UPDATE_ELAPSED_TIME', now: Date.now(), timeStarted})
+        dispatch({type: 'UPDATE_ELAPSED_TIME', payload: Date.now() - timeStarted })
       }, 0 )
     }
     dispatch({type: 'TOGGLE_RUNSTATE'})
