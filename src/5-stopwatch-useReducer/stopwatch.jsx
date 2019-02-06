@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useReducer, useRef, useEffect } from 'react'
 
 const labelStyle = css`
   font-size: 5em;
@@ -17,10 +17,26 @@ const buttonStyle = css`
   width: 200px;
 `
 
+const reducer = (state, action) => {
+  switch( action.type ) {
+    case 'UPDATE_ELAPSED_TIME':
+      return { ...state, timeElapsed: action.now - action.timeStarted }
+      break
+    case 'TOGGLE_RUNSTATE':
+      return { ...state, running: !state.running }
+      break
+    case 'CLEAR':
+      return { ...state, running: false, timeElapsed: 0 }
+      break
+    default:
+      return state
+      break
+  }
+}
+
 const Stopwatch = () => {
 
-  const [timeElapsed, setTimeElapsed] = useState(0)
-  const [running, setRunning] = useState(false)
+  const [{ timeElapsed, running }, dispatch] = useReducer( reducer, { timeElapsed: 0, running: false })
   const timerRef = useRef(null)
 
   // clean up on unMount (empty dependencies array ensures this is only defined ONCE!)
@@ -34,16 +50,15 @@ const Stopwatch = () => {
     } else {
       const timeStarted = Date.now()
       timerRef.current = setInterval( () => {
-        setTimeElapsed( Date.now() - timeStarted )
+        dispatch({type: 'UPDATE_ELAPSED_TIME', now: Date.now(), timeStarted})
       }, 0 )
     }
-    setRunning(!running)
+    dispatch({type: 'TOGGLE_RUNSTATE'})
   }
 
   const resetTimer = () => {
     clearInterval( timerRef.current )
-    setRunning(false)
-    setTimeElapsed(0)
+    dispatch({type: 'CLEAR'})
   }
 
   return <div css={css`text-align: center;`}>
