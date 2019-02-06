@@ -17,26 +17,11 @@ const buttonStyle = css`
   width: 200px;
 `
 
-const reducer = (state, action) => {
-  switch( action.type ) {
-    case 'UPDATE_ELAPSED_TIME':
-      return { ...state, timeElapsed: action.payload }
-      break
-    case 'TOGGLE_RUNSTATE':
-      return { ...state, running: !state.running }
-      break
-    case 'CLEAR':
-      return { ...state, running: false, timeElapsed: 0 }
-      break
-    default:
-      return state
-      break
-  }
-}
+const reducer = ( currentState, newState ) => ({ ...currentState, ...newState })
 
 const Stopwatch = () => {
 
-  const [{ timeElapsed, running }, dispatch] = useReducer( reducer, { timeElapsed: 0, running: false })
+  const [{ timeElapsed, running }, setState] = useReducer( reducer, { timeElapsed: 0, running: false })
   const timerRef = useRef(null)
 
   // clean up on unMount (empty dependencies array ensures this is only defined ONCE!)
@@ -50,15 +35,15 @@ const Stopwatch = () => {
     } else {
       const timeStarted = Date.now()
       timerRef.current = setInterval( () => {
-        dispatch({type: 'UPDATE_ELAPSED_TIME', payload: Date.now() - timeStarted })
+        setState({ timeElapsed: Date.now() - timeStarted })
       }, 0 )
     }
-    dispatch({type: 'TOGGLE_RUNSTATE'})
+    setState({ running: !running })
   }
 
   const resetTimer = () => {
     clearInterval( timerRef.current )
-    dispatch({type: 'CLEAR'})
+    setState({ running: false, timeElapsed: 0})
   }
 
   return <div css={css`text-align: center;`}>
