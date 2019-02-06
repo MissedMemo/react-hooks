@@ -1,7 +1,8 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 import React from 'react'
-import Stopwatch from './stopwatch'
+import Stopwatch1 from './stopwatch-full'
+import Stopwatch2 from './stopwatch-simplified'
 
 const app = css`
   padding-top: 100px;
@@ -9,6 +10,21 @@ const app = css`
   justify-content: center;
 `
 
+const wrapper = css`
+  margin: 0 40px;
+  label {
+    display: block;
+    margin-bottom: 24px;
+  }
+`
+
 export default () => <div css={app}>
-  <Stopwatch />
+  <div css={wrapper}>
+    <label>Full Reducer...</label>
+    <Stopwatch1 />
+  </div>
+  <div css={wrapper}>
+    <label>Simplified...</label>
+    <Stopwatch2 />
+  </div>
 </div>
