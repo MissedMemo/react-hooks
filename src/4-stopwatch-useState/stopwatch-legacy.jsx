@@ -1,21 +1,4 @@
-/** @jsx jsx */
-import { css, jsx } from '@emotion/core'
 import React, { Component } from 'react'
-
-const outputStyle = css`
-  fontSize: 5em;
-  display: block;
-`
-
-const buttonStyle = css`
-  display: block;
-  border: 1px solid #ccc;
-  background: #fff;
-  fontSize: 2em;
-  padding: 15px;
-  margin: 5px;
-  width: 200px;
-`
 
 let timer = null
 let timeStarted = null
@@ -47,12 +30,28 @@ class Stopwatch extends Component {
     const btnText = this.state.isRunning ? "Stop" : "Start"
     const duration = `${this.state.timeElapsed}ms`
 
-    return <div css={css`text-align: center;`}>
-      <label css={outputStyle}>{ duration }</label>
-      <button css={buttonStyle} onClick={this.toggleRunState}>{ btnText }</button>
-      <button css={buttonStyle}>Reset</button>
+    return <div style={{textAlign: 'center'}}>
+      <label style={labelStyle}>{ duration }</label>
+      <button style={buttonStyle} onClick={this.toggleRunState}>{ btnText }</button>
+      <button style={buttonStyle}>Reset</button>
     </div>
   }
+}
+
+
+const buttonStyle = {
+  display: 'block',
+  border: '1px solid #ccc',
+  background: '#fff',
+  fontSize: '2em',
+  padding: 15,
+  margin: 5,
+  width: 200,
+}
+
+const labelStyle = {
+  fontSize: '5em',
+  display: 'block',
 }
 
 export default Stopwatch
