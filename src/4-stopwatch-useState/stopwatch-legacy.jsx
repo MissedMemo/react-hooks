@@ -9,7 +9,7 @@ class Stopwatch extends Component {
     isRunning: false
   }
 
-  toggleRunState = () => {
+  toggleStartStop = () => {
     const { isRunning } = this.state
 
     if ( isRunning ) {
@@ -19,7 +19,7 @@ class Stopwatch extends Component {
       timer = setInterval( () => {
         const timeElapsed = Date.now() - timeStarted
         this.setState({timeElapsed})
-      }, 100 )
+      }, 0 )
     }
 
     this.setState({isRunning: !isRunning})
@@ -32,7 +32,7 @@ class Stopwatch extends Component {
 
     return <div style={{textAlign: 'center'}}>
       <label style={labelStyle}>{ duration }</label>
-      <button style={buttonStyle} onClick={this.toggleRunState}>{ btnText }</button>
+      <button style={buttonStyle} onClick={this.toggleStartStop}>{ btnText }</button>
       <button style={buttonStyle}>Reset</button>
     </div>
   }

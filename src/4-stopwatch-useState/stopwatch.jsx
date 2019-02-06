@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 
 const labelStyle = css`
   font-size: 5em;
@@ -19,11 +19,25 @@ const buttonStyle = css`
 
 const Stopwatch = () => {
 
-  const lapse = 0
+  const [timeElapsed, setTimeElapsed] = useState(0)
+  const [running, setRunning] = useState(false)
+  const timerRef = useRef(null)
+
+  const toggleStartStop = () => {
+    if ( running ) {
+      clearInterval( timerRef.current )
+    } else {
+      const timeStarted = Date.now()
+      timerRef.current = setInterval( () => {
+        setTimeElapsed( Date.now() - timeStarted )
+      }, 0 )
+    }
+    setRunning(!running)
+  }
 
   return <div css={css`text-align: center;`}>
-    <label css={labelStyle}>{`${lapse}ms`}</label>
-    <button css={buttonStyle}>Start</button>
+    <label css={labelStyle}>{`${timeElapsed}ms`}</label>
+    <button css={buttonStyle} onClick={toggleStartStop}>{ running ? 'Stop' : 'Start' }</button>
     <button css={buttonStyle}>Reset</button>
   </div>
 }
