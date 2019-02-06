@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 
-import App from './4-stopwatch-useState/app'
+import App from './5-stopwatch-useReducer/app'
 
 render(
   <App />,
