@@ -17,18 +17,37 @@ const buttonStyle = css`
   width: 200px;
 `
 
+const useInterval = (callback, delay) => {
+
+  const savedCallback = useRef()
+
+  // reset callback reference on every call
+  useEffect( () => {
+    savedCallback.current = callback
+  })
+
+  // set & clear timer (reset on delay change)
+  useEffect( () => {
+    if( delay !== null ) {
+      let timer = setInterval( () => savedCallback.current(), delay )
+      return () => clearInterval(timer) // clean up on unmount
+    }
+  }, [delay] )
+}
+
 const Stopwatch = () => {
 
-  const [timeElapsed, setTimeElapsed] = useState(0)
-  const [running, setRunning] = useState(false)
-  const timerRef = useRef(null)
+  let [count, setCount] = useState(0);
+  let [running, setRunning] = useState(false);
 
-  // clean up on unMount (empty dependencies array ensures this is only defined ONCE!)
-  useEffect( () => {
-    return () => clearInterval( timerRef.current )
-  }, [] )
+  useInterval( () => {
+    // Your custom logic here
+    setCount(count + 1);
+  }, running ? 100 : null );
 
   const toggleStartStop = () => {
+    setRunning(!running)
+    /*
     if ( running ) {
       clearInterval( timerRef.current )
     } else {
@@ -38,18 +57,12 @@ const Stopwatch = () => {
       }, 0 )
     }
     setRunning(!running)
-  }
-
-  const resetTimer = () => {
-    clearInterval( timerRef.current )
-    setRunning(false)
-    setTimeElapsed(0)
+    */
   }
 
   return <div css={css`text-align: center;`}>
-    <label css={labelStyle}>{`${timeElapsed}ms`}</label>
+    <label css={labelStyle}>{`${count}`}</label>
     <button css={buttonStyle} onClick={toggleStartStop}>{ running ? 'Stop' : 'Start' }</button>
-    <button css={buttonStyle} onClick={resetTimer}>Reset</button>
   </div>
 }
 
