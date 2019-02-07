@@ -3,7 +3,7 @@ import { css, jsx } from '@emotion/core'
 import React from 'react'
 import Stopwatch1 from './stopwatch-full'
 import Stopwatch2 from './stopwatch-simplified'
-import Stopwatch3 from './stopwatch-custom-hook'
+import DifferenceCounter from './stopwatch-hook-client'
 
 const app = css`
   padding-top: 100px;
@@ -29,7 +29,7 @@ export default () => <div css={app}>
     <Stopwatch2 />
   </div>
   <div css={wrapper}>
-    <label>Custom Hook...</label>
-    <Stopwatch3 />
+    <label>Shared Custom Hook...</label>
+    <DifferenceCounter />
   </div>
 </div>
