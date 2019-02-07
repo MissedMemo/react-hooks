@@ -17,20 +17,20 @@ const buttonStyle = css`
   width: 200px;
 `
 
-const useInterval = (callback, delay) => {
+const useInterval = (callback, delay ) => {
 
   const savedCallback = useRef()
 
-  // reset callback reference on every call
+  // reset callback reference on mount and after EVERY re-paint
   useEffect( () => {
     savedCallback.current = callback
   })
 
-  // set & clear timer (reset on delay change)
+  // set & clear timer (reset ONLY on delay change)
   useEffect( () => {
     if( delay !== null ) {
       let timer = setInterval( () => savedCallback.current(), delay )
-      return () => clearInterval(timer) // clean up on unmount
+      return () => clearInterval(timer) // clean up before reset and on unmount
     }
   }, [delay] )
 }
@@ -38,15 +38,19 @@ const useInterval = (callback, delay) => {
 const Stopwatch = () => {
 
   let [count, setCount] = useState(0);
-  let [running, setRunning] = useState(false);
+  let [isRunning, setIsRunning] = useState(false);
 
   useInterval( () => {
-    // Your custom logic here
     setCount(count + 1);
-  }, running ? 100 : null );
+  }, isRunning ? 0 : null );
+
+  const reset = () => {
+    setIsRunning(false)
+    setCount(0)
+  }
 
   const toggleStartStop = () => {
-    setRunning(!running)
+    setIsRunning( !isRunning )
     /*
     if ( running ) {
       clearInterval( timerRef.current )
@@ -62,7 +66,8 @@ const Stopwatch = () => {
 
   return <div css={css`text-align: center;`}>
     <label css={labelStyle}>{`${count}`}</label>
-    <button css={buttonStyle} onClick={toggleStartStop}>{ running ? 'Stop' : 'Start' }</button>
+    <button css={buttonStyle} onClick={toggleStartStop}>{ isRunning ? 'Stop' : 'Start' }</button>
+    <button css={buttonStyle} onClick={reset}>Reset</button>
   </div>
 }
 
