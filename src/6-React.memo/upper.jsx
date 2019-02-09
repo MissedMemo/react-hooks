@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
 
-const Upper = ({children}) => {
+const inlineStyle = { fontSize: '24px', color: 'blue' }
 
-  return <div style={{ fontSize: '24px'}}>{ children }</div>
+const Upper = ({children}) => {
+  console.log(children)
+  return <div style={inlineStyle}>
+    { children.toUpperCase() }
+  </div>
 }
 
 export default Upper
