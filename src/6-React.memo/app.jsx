@@ -6,8 +6,12 @@ export default () => {
   const [lastName, setLastName] = useState('')
 
   return <>
-    <label htmlFor='firstname-input' >FirstName</label>
-    <input id='firstname-input' onChange={ e => setFirstName(e.target.value) } />
+    <label htmlFor='firstname' >{ `First Name: ` }</label>
+    <input id='firstname' onChange={ e => setFirstName(e.target.value) } />
     <Upper>{ firstName }</Upper>
+    <hr/>
+    <label htmlFor='lastname' >{ `Last Name: ` }</label>
+    <input id='lastname' onChange={ e => setLastName(e.target.value) } />
+    <Upper>{ lastName }</Upper>
   </>
 }
