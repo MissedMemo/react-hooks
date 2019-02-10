@@ -9,17 +9,21 @@ const centered = css`
   align-items: center;
 `
 
-export default () => {
-  const [ showTilt, setShowTilt ] = useState(false)
+const useToggle = ( initialState = false ) => {
+  const [isToggled, setIsToggled ] = useState(initialState)
+  const toggle = () => setIsToggled( !isToggled )
+  return [ isToggled, toggle ]
+}
 
-  const toggleTilt = () => setShowTilt( !showTilt )
+export default () => {
+  const [ showTilt, setShowTilt ] = useToggle(false)
 
   console.log('show:', showTilt )
 
   return <div css={centered}>
     <label>
       show Tilt
-      <input type='checkbox' checked={showTilt} onChange={ toggleTilt } />
+      <input type='checkbox' checked={showTilt} onChange={ setShowTilt } />
     </label>
     <Tilt>
       <div css={centered}>I'm Tilting...</div>
