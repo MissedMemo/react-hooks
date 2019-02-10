@@ -1,12 +1,19 @@
-import React, { useState } from 'react'
+import React, { memo, useState } from 'react'
 
 const inlineStyle = { fontSize: '24px', color: 'blue' }
 
-const Upper = ({children}) => {
-  console.log(children)
-  return <div style={inlineStyle}>
-    { children.toUpperCase() }
+const Upper = memo ( ({children}) => {
+
+  const [count, setCount] = useState(0)
+
+  const clickHandler = () => setCount( count +1 )
+
+  console.log('rendering:', children)
+
+  return <div>
+    Upcased: <span style={inlineStyle}>{ children.toUpperCase() } </span>
+    <button onClick={ clickHandler }>{count}</button>
   </div>
-}
+})
 
 export default Upper
