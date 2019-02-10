@@ -12,6 +12,7 @@ module.exports = {
   ],
   "plugins": [
     isProduction ? "emotion" : ["emotion", {"sourceMap": true}],
-    "@babel/plugin-proposal-class-properties"
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-syntax-dynamic-import"
   ]
 }

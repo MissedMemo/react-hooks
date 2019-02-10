@@ -1,8 +1,9 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import { useToggle } from './custom-hooks'
-import Tilt from './tilt'
+
+const Tilt = lazy( () => import('./tilt') )
 
 const centered = css`
   display: grid;
@@ -16,13 +17,15 @@ export default () => {
 
   return <div css={centered}>
     <label>
-      show Tilt
+      show tilt
       <input type='checkbox' checked={showTilt} onChange={ setShowTilt } />
     </label>
     {
-      showTilt && <Tilt>
-        <div css={centered}>I'm Tilting...</div>
-      </Tilt>
+      showTilt && <Suspense fallback={ <div>Loading...</div> }>
+        <Tilt>
+          <div css={centered}>I'm Tilting...</div>
+        </Tilt>
+      </Suspense>
     }
   </div>
 }
