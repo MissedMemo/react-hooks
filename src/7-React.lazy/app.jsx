@@ -11,18 +11,18 @@ const centered = css`
 `
 
 export default () => {
-  
-  const [ showTilt, setShowTilt ] = useToggle(false)
 
-  console.log('show:', showTilt )
+  const [ showTilt, setShowTilt ] = useToggle(false)
 
   return <div css={centered}>
     <label>
       show Tilt
       <input type='checkbox' checked={showTilt} onChange={ setShowTilt } />
     </label>
-    <Tilt>
-      <div css={centered}>I'm Tilting...</div>
-    </Tilt>
+    {
+      showTilt && <Tilt>
+        <div css={centered}>I'm Tilting...</div>
+      </Tilt>
+    }
   </div>
 }
