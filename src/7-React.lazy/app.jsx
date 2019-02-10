@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
-import React from 'react'
+import React, { useState } from 'react'
 import Tilt from './tilt'
 
 const centered = css`
@@ -9,8 +9,20 @@ const centered = css`
   align-items: center;
 `
 
-export default () => <div css={centered}>
-  <Tilt>
-    <div css={centered}>I'm Tilting...</div>
-  </Tilt>
-</div>
+export default () => {
+  const [ showTilt, setShowTilt ] = useState(false)
+
+  const toggleTilt = () => setShowTilt( !showTilt )
+
+  console.log('show:', showTilt )
+
+  return <div css={centered}>
+    <label>
+      show Tilt
+      <input type='checkbox' checked={showTilt} onChange={ toggleTilt } />
+    </label>
+    <Tilt>
+      <div css={centered}>I'm Tilting...</div>
+    </Tilt>
+  </div>
+}
