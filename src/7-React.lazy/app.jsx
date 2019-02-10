@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
-import React, { useState } from 'react'
+import React from 'react'
+import { useToggle } from './custom-hooks'
 import Tilt from './tilt'
 
 const centered = css`
@@ -9,13 +10,8 @@ const centered = css`
   align-items: center;
 `
 
-const useToggle = ( initialState = false ) => {
-  const [isToggled, setIsToggled ] = useState(initialState)
-  const toggle = () => setIsToggled( !isToggled )
-  return [ isToggled, toggle ]
-}
-
 export default () => {
+  
   const [ showTilt, setShowTilt ] = useToggle(false)
 
   console.log('show:', showTilt )
