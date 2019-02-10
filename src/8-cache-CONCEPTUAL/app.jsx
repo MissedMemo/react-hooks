@@ -1,9 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
-import React, { lazy, Suspense } from 'react'
-import { useToggle } from './custom-hooks'
-
-const Tilt = lazy( () => import('./tilt') )
+import React, { useState } from 'react'
 
 const centered = css`
   display: grid;
@@ -13,19 +10,21 @@ const centered = css`
 
 export default () => {
 
-  const [ showTilt, setShowTilt ] = useToggle(false)
+  const [ pokemonName, setPokemonName ] = useState(null)
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    setPokemonName( e.target.elements.characterName.value )
+  }
 
   return <div css={centered}>
-    <label>
-      show tilt
-      <input type='checkbox' checked={showTilt} onChange={ setShowTilt } />
-    </label>
-    {
-      showTilt && <Suspense fallback={ <div>Loading...</div> }>
-        <Tilt>
-          <div css={centered}>I'm Tilting...</div>
-        </Tilt>
-      </Suspense>
-    }
+    <form onSubmit={handleSubmit}>
+      <label htmlFor='input-name'>Character (eg. Pikachu etc.)</label><br/>
+      <input id='input-name' name='characterName' />
+      <button type='submit'>Submit</button>
+    </form>
+    <div>
+      { pokemonName }
+    </div>
   </div>
 }
