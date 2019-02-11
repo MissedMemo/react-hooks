@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
-import React, { useState } from 'react'
+import React, { useState, Suspense } from 'react'
 import PokemonInfo, { fetchData } from './pokemon'
 
 const centered = css`
@@ -25,7 +25,11 @@ export default () => {
       <button type='submit'>Submit</button>
     </form>
     <div>
-      { pokemonName && <PokemonInfo pokemonName={pokemonName} /> }
+      {
+        pokemonName && <Suspense fallback={ <div>Loading...</div> }>
+          <PokemonInfo pokemonName={pokemonName} />
+        </Suspense>
+      }
     </div>
   </div>
 }

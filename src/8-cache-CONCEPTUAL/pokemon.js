@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 export const fetchData = name => {
 
   const pokemonQuery = `
@@ -33,12 +34,22 @@ export const fetchData = name => {
   .then( response => response.data.pokemon )
 }
 
+
+/* NOT APPROPRIATE AS AN ACTUAL APPROACH!
+  issues with cache validation etc. make
+  this useful ONLY as an aid to learning
+  how React.cache works internally...
+*/
+
+const cache = {}
+
 const PokemonInfo = ({pokemonName}) => {
-  const pokemon = null
+  const pokemon = cache[pokemonName]
   if (!pokemon ) {
     const promise = fetchData(pokemonName).then(
-      p => console.log( 'fetched:', p )
+      p => ( cache[pokemonName] = p )
     )
+    throw promise // triggers Suspense fallback
   }
   return <pre>{ JSON.stringify( pokemon || 'Unknown', null, 2) }</pre>
 }
