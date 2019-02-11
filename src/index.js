@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 
-import App from './8-cache-CONCEPTUAL/app'
+import App from './8-cache/app'
 
 render(
   <App />,
