@@ -27,13 +27,7 @@ const createResource = fn => {
 const myPokemon = createResource(fetchData)
 
 const PokemonInfo = ({pokemonName}) => {
-  const pokemon = cache[pokemonName]
-  if (!pokemon ) {
-    const promise = fetchData(pokemonName).then(
-      p => ( cache[pokemonName] = p )
-    )
-    throw promise // triggers Suspense fallback
-  }
+  const pokemon = myPokemon.read(pokemonName)
   return <pre>{ JSON.stringify( pokemon || 'Unknown', null, 2) }</pre>
 }
 

@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 import React, { useState, Suspense } from 'react'
-import PokemonInfo from './cache.1-conceptual'
+import PokemonInfo from './cache.2-createResource'
 
 const centered = css`
   display: grid;
