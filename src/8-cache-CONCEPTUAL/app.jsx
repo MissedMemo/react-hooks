@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 import React, { useState } from 'react'
+import PokemonInfo, { fetchData } from './pokemon'
 
 const centered = css`
   display: grid;
@@ -24,7 +25,7 @@ export default () => {
       <button type='submit'>Submit</button>
     </form>
     <div>
-      { pokemonName }
+      { pokemonName && <PokemonInfo pokemonName={pokemonName} /> }
     </div>
   </div>
 }
